@@ -1,0 +1,8 @@
+%b Landlord:
+= @model.get('landlord_id')
+%br
+%b Tenant:
+= @model.get('tenant_id')
+%br
+%b At:
+= @model.get('at')

@@ -1,0 +1,18 @@
+%h3 Add meeting
+%form
+  - for text, field of {landlord: 'landlord_id', tenant: 'tenant_id', at: 'at'}
+    %label{for: field}= text
+    %input{name: field, id: field}
+    %br
+
+%h3 Meetings
+%table
+  %tr
+    %th Landlord
+    %th Tenant
+    %th At
+  - for model in @collection.models
+    %tr{id: "meetings_#{model.get('id')}"}
+      %td= model.get('landlord_id')
+      %td= model.get('tenant_id')
+      %td= model.get('at')
