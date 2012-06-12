@@ -20,3 +20,8 @@
 //= require booking
 
 //= require_tree .
+
+jQuery(document).ready(function(){
+    start();
+    router.navigate('meetings', {trigger: true});
+});
