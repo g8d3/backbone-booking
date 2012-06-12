@@ -11,14 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604153600) do
+ActiveRecord::Schema.define(:version => 20120608224714) do
 
   create_table "meetings", :force => true do |t|
-    t.integer  "landlord_id"
-    t.integer  "tenant_id"
+    t.string   "landlord_id", :null => false
+    t.string   "tenant_id"
     t.datetime "at"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  add_index "meetings", ["landlord_id", "tenant_id", "at"], :name => "index_meetings_on_landlord_id_and_tenant_id_and_at", :unique => true
+  add_index "meetings", ["landlord_id"], :name => "index_meetings_on_landlord_id"
+  add_index "meetings", ["tenant_id"], :name => "index_meetings_on_tenant_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

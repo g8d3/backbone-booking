@@ -11,6 +11,10 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'awesome_print'
+  gem 'hirb'
+  gem 'wirb'
+  gem 'wirble'
   gem 'rspec-rails'
   gem "jasminerice"
 end
