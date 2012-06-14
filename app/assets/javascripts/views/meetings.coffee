@@ -26,7 +26,15 @@ class window.MeetingIndex extends Backbone.View
 
   events:
     'click form#new_meeting button': 'create'
+    'click a.cancel': 'cancel'
 
   create: (event) ->
     event.preventDefault()
     @collection.create($('form#new_meeting').serializeObject(), wait: true)
+
+  cancel: (event) ->
+    event.preventDefault()
+    id = $(event.target).closest('tr').data('id')
+    @collection.get(id).cancel
+      success: -> $(event.target).closest('tr').addClass('cancelled')
+      error: -> $(event.target).closest('tr').addClass('error-cancelling')

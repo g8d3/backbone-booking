@@ -1,3 +1,10 @@
 // Place all the styles related to the Meetings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.cancelled{
+  color: gray
+}
+
+.error-cancelling{
+  color: red
+}
