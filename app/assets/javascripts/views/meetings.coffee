@@ -29,4 +29,4 @@ class window.MeetingIndex extends Backbone.View
 
   create: (event) ->
     event.preventDefault()
-    @collection.create($('form#new_meeting').asJSON(), wait: true)
+    @collection.create($('form#new_meeting').serializeObject(), wait: true)

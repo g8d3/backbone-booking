@@ -26,7 +26,6 @@ class window.Booking
     Backbone.history.start pushState: true
 window.booking = new Booking()
 
-$.fn.asJSON = -> $.parseJSON "{\"#{@serialize().replace(/&/g, '","').replace(/\=/g, '":"')}\"}"
 $.fn.pickDateTime = (options) -> @will_pickdate($.extend booking.defaults.will_pickdate, options)
 
 $.extend $.ui.autocomplete.prototype.options, booking.defaults.autocomplete
