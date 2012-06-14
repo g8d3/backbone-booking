@@ -16,12 +16,11 @@
 //= require underscore
 //= require backbone
 //= require hamlcoffee
-
+//= require libs/will_pickdate
 //= require booking
-
 //= require_tree .
 
 jQuery(document).ready(function(){
-    start();
+    booking.start();
     router.navigate('meetings', {trigger: true});
 });

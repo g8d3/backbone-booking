@@ -5,4 +5,6 @@ describe 'booking application', ->
 
   describe 'start', ->
     it 'creates a router that shows user a meeting list', ->
-#      start()
+      start()
+      spyOn(router, 'navigate')
+      router.navigate('meetings', trigger: true)

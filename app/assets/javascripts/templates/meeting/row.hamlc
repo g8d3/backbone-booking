@@ -1,0 +1,6 @@
+%tr{id: "meetings_#{@model.id}"}
+  %td= @model.get('landlord_id')
+  %td= @model.get('tenant_id')
+  %td= @model.get('at')
+  %td
+    %a{href: 'ds'} Cancel

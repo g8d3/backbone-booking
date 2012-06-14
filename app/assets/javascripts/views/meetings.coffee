@@ -1,41 +1,32 @@
 class window.MeetingIndex extends Backbone.View
 
-  initialize: ->
-    @collection.on('reset', @render, this)
-    @collection.on('add', @add, this)
-    @collection.fetch()
+  initialize: (options = {}) ->
+    options[key] ||= val for key, val of fetch: true, render: true
+    @collection = options.collection || new Meetings()
+    @template = options.template || JST['meeting/index']
+    @row = options.row || JST['meeting/row']
+    if options.fetch then @collection.fetch success: => if options.render then @render()
 
-  template: JST['meeting/index']
+  render: (options = {}) ->
+    options[key] ||= val for key, val of writeTo: 'body', enhanceUI: true
+    @$el.html(@template(collection: @collection, row: @row))
+    $(options.writeTo).html(@el) if options.writeTo
+    @enhanceUI() if options.enhanceUI
+    this
 
-  render: ->
-    @$el.html(@template(collection: @collection))
+  enhanceUI: ->
     window.landlords.fetch success: ->
       $('input[name=landlord_id]').autocomplete
         source: window.landlords.models.map (landlord) -> value: landlord.id, label: landlord.get('name')
     window.tenants.fetch success: ->
       $('input[name=tenant_id]').autocomplete
         source: window.tenants.models.map (tenant) -> value: tenant.id, label: tenant.get('name')
-    $('input[name=at]').will_pickdate timePicker: true, format: 'j F Y H:i', inputOutputFormat: 'Y-m-d H:i:s'
-    this
-
-  add: (meeting) ->
-    console.log 'sadsadad'
+    $('input[name=at]').pickDateTime()
+    $('input[name=landlord_id]').focus()
 
   events:
-    'keydown form#new_meeting input': 'createOnEnter'
     'click form#new_meeting button': 'create'
 
-  createOnEnter: (event)->
-    @collection.create($('form#new_meeting').as_json(), wait: true) if event.keyCode == 13
-
-  create: ->
-    @collection.create($('form#new_meeting').as_json(), wait: true)
-
-class window.MeetingShow extends Backbone.View
-  template: JST['meeting/show']
-
-  render: ->
-    @model.fetch
-      success: =>
-        @$el.html(@template(model: @model))
-    this
+  create: (event) ->
+    event.preventDefault()
+    @collection.create($('form#new_meeting').asJSON(), wait: true)
