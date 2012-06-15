@@ -3,7 +3,7 @@
     width: 208px;
     padding: 5px;
     height: 221px;
-    background: #99e649;
+    background: #FFC477;
     -moz-border-radius: 10px;
     -khtml-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -23,13 +23,13 @@
 .wpd .header .title{
     display: block;
     white-space: nowrap;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#99e649), to(#80bf3d));
-    background-image: -webkit-linear-gradient(top, #99e649, #80bf3d);
-    background-image: -moz-linear-gradient(top, #99e649, #80bf3d);
-    background-image: -ms-linear-gradient(top, #99e649, #80bf3d);
-    background-image: -o-linear-gradient(top, #99e649, #80bf3d);
-    background-image: linear-gradient(top, #99e649, #80bf3d);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#99e649', EndColorStr='#80bf3d');
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFD7A2), to(#FFCE8F));
+    background-image: -webkit-linear-gradient(top, #FFD7A2, #FFCE8F);
+    background-image: -moz-linear-gradient(top, #FFD7A2, #FFCE8F);
+    background-image: -ms-linear-gradient(top, #FFD7A2, #FFCE8F);
+    background-image: -o-linear-gradient(top, #FFD7A2, #FFCE8F);
+    background-image: linear-gradient(top, #FFD7A2, #FFCE8F);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#FFD7A2', EndColorStr='#FFCE8F');
     text-decoration: none;
     text-shadow: 0 1px 0 rgba(255,255,255,.8);
     height: 22px;
@@ -68,8 +68,8 @@
 .wpd .header .title.disabled:hover,
 .wpd .header .previous.disabled:hover,
 .wpd .header .next.disabled:hover{
-    color: #233610;
-    background: #80bf3d;
+    color: #927F65;
+    background: #FFD7A2;
     cursor: default;
     text-shadow: none;
     box-shadow: 0 0 1px 1px rgba(0,0,0,.1) inset, 0 1px 0 rgba(0,0,0,.3);
@@ -79,13 +79,13 @@
 .wpd .header .previous:hover,
 .wpd .header .title:hover{
     background-color: #ddd;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#ddd));
-    background-image: -webkit-linear-gradient(top, #fafafa, #ddd);
-    background-image: -moz-linear-gradient(top, #fafafa, #ddd);
-    background-image: -ms-linear-gradient(top, #fafafa, #ddd);
-    background-image: -o-linear-gradient(top, #fafafa, #ddd);
-    background-image: linear-gradient(top, #fafafa, #ddd);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa', EndColorStr='#dddddd');
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#927F65), to(#ddd));
+    background-image: -webkit-linear-gradient(top, #927F65, #ddd);
+    background-image: -moz-linear-gradient(top, #927F65, #ddd);
+    background-image: -ms-linear-gradient(top, #927F65, #ddd);
+    background-image: -o-linear-gradient(top, #927F65, #ddd);
+    background-image: linear-gradient(top, #927F65, #ddd);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#927F65', EndColorStr='#dddddd');
 }
 
 
@@ -101,7 +101,7 @@
 .wpd .header .title:focus
 {
     outline: 0;
-    background: #fafafa;
+    background: #FFD7A2;
 }
 
 .wpd .header .titleText {

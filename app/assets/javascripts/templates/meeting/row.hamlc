@@ -4,3 +4,4 @@
   %td= @model.get('at')
   %td
     %a.cancel{href: 'javascript:void(0)'}= @model.cancelLabel()
+    %a.delete{href: 'javascript:void(0)'} Delete

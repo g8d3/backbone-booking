@@ -27,6 +27,8 @@ class window.MeetingIndex extends Backbone.View
   events:
     'click form#new_meeting button': 'create'
     'click a.cancel': 'cancel'
+    'click a.delete': 'delete'
+    'click .dismiss.button': 'dismiss'
 
   create: (event) ->
     event.preventDefault()
@@ -36,7 +38,17 @@ class window.MeetingIndex extends Backbone.View
     event.preventDefault()
     id = $(event.target).closest('tr').data('id')
     @collection.get(id).toggleCancel
-      success: (model)->
+      success: (model) ->
         $(event.target).closest('tr').toggleClass('cancelled', model.get('cancelled'))
         $(event.target).html(model.cancelLabel())
       error: -> $(event.target).closest('tr').addClass('error-cancelling')
+
+  delete: (event) ->
+    event.preventDefault()
+    id = $(event.target).closest('tr').data('id')
+    @collection.get(id).destroy
+      success: (model) ->
+        $(event.target).closest('tr').fadeOut('slow', -> $(@).html('<span class="dismiss button">Removed!</span>')).fadeIn('slow')
+
+  dismiss: (event) ->
+    $(event.target).fadeOut('slow')

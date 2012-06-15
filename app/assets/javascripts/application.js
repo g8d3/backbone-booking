@@ -21,8 +21,7 @@
 //= require_tree .
 
 jQuery(document).ready(function(){
-    booking.start();
-    booking.router.navigate('meetings', {trigger: true});
+    booking = new Booking();
 });
 
 $.fn.serializeObject = function(){

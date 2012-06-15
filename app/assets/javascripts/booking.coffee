@@ -1,5 +1,5 @@
 class @Booking
-  defaults:
+  @defaults:
     autocomplete:
       minLength: 0
       select: (event, ui) ->
@@ -17,15 +17,20 @@ class @Booking
         event.preventDefault()
         $(@).focus()
         $(@).val(ui.item.label)
+
     will_pickdate: timePicker: true, format: 'j F Y H:i', inputOutputFormat: 'Y-m-dTH:i:s'
 
-  start: ->
+    navigate: url: 'meetings', options: trigger: true
+
+  constructor: (options = {}) ->
     @landlords = new Landlords()
     @tenants = new Tenants()
     @router = new MeetingsRouter()
     Backbone.history.start pushState: true
-@booking = new Booking()
+    if options.navigate != false
+      options.navigate ||= Booking.defaults.navigate
+      @router.navigate(options.navigate.url, options.navigate.options)
 
-$.fn.pickDateTime = (options) -> @will_pickdate($.extend booking.defaults.will_pickdate, options)
+$.fn.pickDateTime = (options) -> @will_pickdate($.extend Booking.defaults.will_pickdate, options)
 
-$.extend $.ui.autocomplete.prototype.options, booking.defaults.autocomplete
+$.extend $.ui.autocomplete.prototype.options, Booking.defaults.autocomplete
