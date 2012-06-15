@@ -25,7 +25,10 @@ class window.MeetingIndex extends Backbone.View
     $('input[name=landlord_id]').focus()
 
   events:
-    'click form#new_meeting button': 'create'
+    'click form#new_meeting .button': 'create'
+    'click form#new_meeting label[for!=at]': 'openAutocomplete'
+    'click form#new_meeting label[for=at]': 'focusAtDisplay'
+    'blur form#new_meeting input': 'checkValue'
     'click a.cancel': 'cancel'
     'click a.delete': 'delete'
     'click .dismiss.button': 'dismiss'
@@ -33,6 +36,12 @@ class window.MeetingIndex extends Backbone.View
   create: (event) ->
     event.preventDefault()
     @collection.create($('form#new_meeting').serializeObject(), wait: true)
+
+  openAutocomplete: (event) -> $(event.target).nextAll('input:first').autocomplete('search')
+    
+  focusAtDisplay: -> $('input#at_display').focus()
+
+  checkValue: (event) -> console.log 'dsad'
 
   cancel: (event) ->
     event.preventDefault()
