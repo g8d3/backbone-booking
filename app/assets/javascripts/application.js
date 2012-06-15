@@ -18,6 +18,7 @@
 //= require hamlcoffee
 //= require libs/will_pickdate
 //= require booking
+//= require bootstrap
 //= require_tree .
 
 jQuery(document).ready(function(){
