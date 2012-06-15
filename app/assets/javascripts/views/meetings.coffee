@@ -35,6 +35,8 @@ class window.MeetingIndex extends Backbone.View
   cancel: (event) ->
     event.preventDefault()
     id = $(event.target).closest('tr').data('id')
-    @collection.get(id).cancel
-      success: -> $(event.target).closest('tr').addClass('cancelled')
+    @collection.get(id).toggleCancel
+      success: (model)->
+        $(event.target).closest('tr').toggleClass('cancelled', model.get('cancelled'))
+        $(event.target).html(model.cancelLabel())
       error: -> $(event.target).closest('tr').addClass('error-cancelling')

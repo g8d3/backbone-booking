@@ -3,4 +3,4 @@
   %td= @model.get('tenant_id')
   %td= @model.get('at')
   %td
-    %a.cancel{href: 'javascript:void(0)'} Cancel
+    %a.cancel{href: 'javascript:void(0)'}= @model.cancelLabel()
