@@ -1,4 +1,4 @@
-class window.Booking
+class @Booking
   defaults:
     autocomplete:
       minLength: 0
@@ -20,11 +20,11 @@ class window.Booking
     will_pickdate: timePicker: true, format: 'j F Y H:i', inputOutputFormat: 'Y-m-dTH:i:s'
 
   start: ->
-    window.landlords = new Landlords()
-    window.tenants = new Tenants()
-    window.router = new MeetingsRouter()
+    @landlords = new Landlords()
+    @tenants = new Tenants()
+    @router = new MeetingsRouter()
     Backbone.history.start pushState: true
-window.booking = new Booking()
+@booking = new Booking()
 
 $.fn.pickDateTime = (options) -> @will_pickdate($.extend booking.defaults.will_pickdate, options)
 

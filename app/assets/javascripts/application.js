@@ -22,7 +22,7 @@
 
 jQuery(document).ready(function(){
     booking.start();
-    router.navigate('meetings', {trigger: true});
+    booking.router.navigate('meetings', {trigger: true});
 });
 
 $.fn.serializeObject = function(){

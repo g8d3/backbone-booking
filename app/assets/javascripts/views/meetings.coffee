@@ -15,12 +15,12 @@ class window.MeetingIndex extends Backbone.View
     this
 
   enhanceUI: ->
-    window.landlords.fetch success: ->
+    booking.landlords.fetch success: ->
       $('input[name=landlord_id]').autocomplete
-        source: window.landlords.models.map (landlord) -> value: landlord.id, label: landlord.get('name')
-    window.tenants.fetch success: ->
+        source: booking.landlords.models.map (landlord) -> value: landlord.id, label: landlord.get('name')
+    booking.tenants.fetch success: ->
       $('input[name=tenant_id]').autocomplete
-        source: window.tenants.models.map (tenant) -> value: tenant.id, label: tenant.get('name')
+        source: booking.tenants.models.map (tenant) -> value: tenant.id, label: tenant.get('name')
     $('input[name=at]').pickDateTime()
     $('input[name=landlord_id]').focus()
 

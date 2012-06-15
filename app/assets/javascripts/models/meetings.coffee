@@ -1,5 +1,8 @@
 class window.Meeting extends Backbone.Model
 
+  initialize: (attributes = {}) ->
+    @landlord = attributes.landlord || booking.landlords.get @get('landlord_id')
+
   toggleCancel: (callbacks = {}) ->
     @save {cancelled: !@get('cancelled')}, success: callbacks.success, error: callbacks.error
 
