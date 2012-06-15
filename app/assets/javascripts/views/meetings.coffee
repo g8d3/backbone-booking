@@ -1,5 +1,7 @@
 class window.MeetingIndex extends Backbone.View
 
+  className: 'container-fluid'
+
   initialize: (options = {}) ->
     options[key] ||= val for key, val of fetch: true, render: true
     @collection = options.collection || new Meetings()

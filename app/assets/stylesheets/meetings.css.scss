@@ -1,6 +1,11 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
+.container-fluid {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .cancelled{
   color: gray
 }

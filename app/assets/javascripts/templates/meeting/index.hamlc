@@ -1,15 +1,17 @@
-%h3 Add meeting
-%form#new_meeting
-  - for text, field of {landlord: 'landlord_id', tenant: 'tenant_id', at: 'at'}
-    %label{for: field}= text
-    %input{name: field, id: field}
-    %br
-  .button Add meeting
-%h3 Meetings
-%table
-  %tr
-    %th Landlord
-    %th Tenant
-    %th At
-  - for model in @collection.models
-    != @row model: model
+%section.row-fluid
+  .span12
+    %h3 Add meeting
+    %form#new_meeting
+      - for text, field of {landlord: 'landlord_id', tenant: 'tenant_id', at: 'at'}
+        %label{for: field}= text
+        %input{name: field, id: field}
+        %br
+      .btn.btn-primary Add meeting
+    %h3 Meetings
+    %table.table.table-striped
+      %thead
+        %th Landlord
+        %th Tenant
+        %th At
+      - for model in @collection.models
+        != @row model: model
