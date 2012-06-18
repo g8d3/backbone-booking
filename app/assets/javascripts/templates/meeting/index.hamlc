@@ -1,17 +1,20 @@
+%header.row-fluid
+  .span12
+    %h1.brand MeetMe
 %section.row-fluid
   .span12
-    %h3 Add meeting
-    %form#new_meeting
-      - for text, field of {landlord: 'landlord_id', tenant: 'tenant_id', at: 'at'}
+    %h2 New meeting
+    %form#new_meeting.form-inline
+      - for text, field of { Landlord: 'landlord_id', Tenant: 'tenant_id', at: 'at'}
         %label{for: field}= text
         %input{name: field, id: field}
-        %br
-      .btn.btn-primary Add meeting
-    %h3 Meetings
+      .btn.btn-success Add
+    %h2 Meetings
     %table.table.table-striped
       %thead
         %th Landlord
         %th Tenant
         %th At
+        %th Actions
       - for model in @collection.models
         != @row model: model
