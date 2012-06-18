@@ -11,12 +11,23 @@ $baseColorDark: #387038;
   margin: 0 auto;
 }
 
-.cancelled{
-  color: gray
+.cancelled td:not(.actions) {
+  color: gray;
+  text-decoration: line-through;
 }
 
 .error-cancelling{
-  color: red
+  color: red;
+}
+
+.dismiss {
+  color: black;
+  border: 1px solid red;
+  padding: 10px 40px;
+  background: #ffaec4;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 input:focus, textarea:focus {

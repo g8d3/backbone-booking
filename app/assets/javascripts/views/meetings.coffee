@@ -33,7 +33,7 @@ class window.MeetingIndex extends Backbone.View
     'blur form#new_meeting input': 'checkValue'
     'click a.cancel': 'cancel'
     'click a.delete': 'delete'
-    'click .dismiss.button': 'dismiss'
+    'click .dismiss': 'dismiss'
 
   create: (event) ->
     event.preventDefault()
@@ -59,7 +59,7 @@ class window.MeetingIndex extends Backbone.View
     id = $(event.target).closest('tr').data('id')
     @collection.get(id).destroy
       success: (model) ->
-        $(event.target).closest('tr').fadeOut('slow', -> $(@).html('<span class="dismiss button">Removed!</span>')).fadeIn('slow')
+        $(event.target).closest('tr').fadeOut('slow', -> $(@).html('<span class="dismiss">Removed!</span>')).fadeIn('slow')
 
   dismiss: (event) ->
     $(event.target).fadeOut('slow')

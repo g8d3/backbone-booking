@@ -2,6 +2,6 @@
   %td= @model.get('landlord_id')
   %td= @model.get('tenant_id')
   %td= @model.get('at')
-  %td
+  %td.actions
     %a.cancel{href: 'javascript:void(0)'}= @model.cancelLabel()
     %a.delete{href: 'javascript:void(0)'} Delete
