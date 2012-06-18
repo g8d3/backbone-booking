@@ -1,5 +1,7 @@
 $linkColor: #5DBB5D;
 $linkColorHover: #387038;
+$baseColorLight: #5DBB5D;
+$baseColorDark: #387038;
 
 @import "bootstrap";
 @import "bootstrap-responsive";
@@ -24,18 +26,31 @@ input:focus, textarea:focus {
   box-shadow: inset 0 1px 1px rgba(93, 187, 93, 0.075), 0 0 8px rgba(56, 112, 56, 0.6);
 }
 
-.table th, .table td {
-  text-align: center;
+.table {
+  th, td {
+    text-align: center;
+  }
+  th {
+    color: $baseColorDark;
+  }
+}
+
+.table-striped tbody tr:nth-child(odd) td {
+  background-color: rgba(93, 187, 93, 0.04);
+}
+
+.table tbody tr:hover td {
+  background-color: rgba(93, 187, 93, 0.1);
 }
 
 h1.brand {
   font-family: 'Concert One', cursive;
   font-size: 36px;
-  color: #387038;
+  color: $baseColorDark;
   margin: 0.5em 0;
 }
 
 h2 {
   margin-bottom: 0.4em;
-  color: #5DBB5D;
+  color: $baseColorLight;
 }
