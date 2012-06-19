@@ -4,3 +4,4 @@
 en:
   hello: "Hello world"
   loading: "Loading..."
+  datetime_format: "%d %B %Y at %H:%M:%S"

@@ -4,5 +4,4 @@ class Meeting < ActiveRecord::Base
   #validate { errors.add :landlord, "Landlord is busy #{at.strftime('on %D at %R')}" if landlord.busy?(at)}
   belongs_to :landlord
   belongs_to :tenant
-
 end

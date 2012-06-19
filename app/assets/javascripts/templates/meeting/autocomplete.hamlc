@@ -1,0 +1,4 @@
+%label{for: @for}
+%input{type: 'hidden', name: @field}
+%input{id: @for}
+.btn= @create
