@@ -53,7 +53,7 @@ class window.MeetingIndex extends Backbone.View
     response = booking[collection].create name: $(event.target).prevAll('input[id*=displayed]').first().val(), wait: true
     if response
       $(event.target).prevAll('input[id*=displayed]').autocomplete 'option', source: booking[collection].forAutocomplete()
-      created = $('<span class="alert alert-success">Created</span>')
+      created = $('<span class="alert alert-success centered">Created</span>')
       $(event.target).hide().after(created)
       created.fadeOut(1500)
 
