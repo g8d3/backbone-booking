@@ -8,7 +8,7 @@ class window.MeetingIndex extends Backbone.View
     @template = options.template || JST['meeting/index']
     @row = options.row || JST['meeting/row']
     if options.render then @render()
-    @collection.on 'add', @addRow, this
+    @collection.on 'sync', @addRow, this
     booking.landlords.on 'sync', @autocompleteAdd, this
     booking.tenants.on 'sync', @autocompleteAdd, this
 
