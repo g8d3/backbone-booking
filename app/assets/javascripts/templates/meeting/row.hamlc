@@ -1,6 +1,6 @@
 %tr{data: {id: @model.id}, class: @model.class()}
-  %td= @model.landlord().get('landlord_id')
-  %td= @model.get('tenant_id')
+  %td= @model.landlord().get('name')
+  %td= @model.tenant().get('name')
   %td= @model.get('at')
   %td.actions
     %a.cancel{href: 'javascript:void(0)'}= @model.cancelLabel()

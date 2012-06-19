@@ -10,6 +10,7 @@ class window.Meeting extends Backbone.Model
   cancelLabel: -> if @get('cancelled') then 'Undo cancel' else 'Cancel'
 
   landlord: -> booking.landlords.get(@get 'landlord_id')
+  tenant: -> booking.tenants.get(@get 'tenant_id')
 
 class window.Meetings extends Backbone.Collection
   url: '/meetings'
