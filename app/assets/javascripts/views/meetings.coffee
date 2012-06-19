@@ -7,8 +7,10 @@ class window.MeetingIndex extends Backbone.View
     @collection = options.collection || booking.meetings
     @template = options.template || JST['meeting/index']
     @row = options.row || JST['meeting/row']
-    if options.fetch then @collection.fetch success: => if options.render then @render()
-    @collection.on 'add', @addOne, this
+    if options.render then @render()
+    @collection.on 'add', @addRow, this
+    booking.landlords.on 'sync', @autocompleteAdd, this
+    booking.tenants.on 'sync', @autocompleteAdd, this
 
   render: (options = {}) ->
     options[key] ||= val for key, val of writeTo: 'body', enhanceUI: true
@@ -17,16 +19,27 @@ class window.MeetingIndex extends Backbone.View
     @enhanceUI() if options.enhanceUI
     this
 
-  addOne: (model) ->
+  addRow: (model) ->
     $('tbody').append(@row(model: model))
+
+  autocompleteAdd: (model) ->
+    collection = model.constructor.name.toLowerCase() + 's'
+    hidden = $('input[name=' + model.constructor.name.toLowerCase() + '_id]')
+    displayed = $('input#displayed_' + model.constructor.name.toLowerCase() + '_id')
+    hidden.val(model.id)
+    hidden.nextAll('.btn:first').hide()
+    hidden.nextAll('.alert:first').show(0, -> $(@).fadeOut(1500))
+    displayed.autocomplete 'option', source: booking[collection].forAutocomplete()
 
   enhanceUI: ->
     $('input[name=landlord_id]').autocomplete
       source: booking.landlords.forAutocomplete()
     $('input[name=landlord_id]').after($('<span class="create-user btn btn-warning">Create</span>').hide())
+    $('input[name=landlord_id]').after($('<span class="alert alert-success centered">Created</span>').hide())
     $('input[name=tenant_id]').autocomplete
       source: booking.tenants.forAutocomplete()
     $('input[name=tenant_id]').after($('<span class="create-user btn btn-warning">Create</span>').hide())
+    $('input[name=tenant_id]').after($('<span class="alert alert-success centered">Created</span>').hide())
     $('input[name=at]').pickDateTime()
     $('input[name=landlord_id]').focus()
 
@@ -50,12 +63,9 @@ class window.MeetingIndex extends Backbone.View
 
   createUser: (event) ->
     collection = $(event.target).prevAll('input').first().attr('id').match(/tenant|landlord/)[0] + 's'
-    response = booking[collection].create name: $(event.target).prevAll('input[id*=displayed]').first().val(), wait: true
-    if response
-      $(event.target).prevAll('input[id*=displayed]').autocomplete 'option', source: booking[collection].forAutocomplete()
-      created = $('<span class="alert alert-success centered">Created</span>')
-      $(event.target).hide().after(created)
-      created.fadeOut(1500)
+    displayed = $(event.target).prevAll('input[id*=displayed]').first()
+    hidden = $(event.target).prevAll('input:first:hidden')
+    booking[collection].create name: displayed.val(), wait: true
 
   focusAtDisplay: -> $('input#at_display').focus()
 
