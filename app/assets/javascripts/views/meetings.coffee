@@ -8,6 +8,7 @@ class window.MeetingIndex extends Backbone.View
     @template = options.template || JST['meeting/index']
     @row = options.row || JST['meeting/row']
     if options.fetch then @collection.fetch success: => if options.render then @render()
+    @collection.on 'add', @render, this
 
   render: (options = {}) ->
     options[key] ||= val for key, val of writeTo: 'body', enhanceUI: true
