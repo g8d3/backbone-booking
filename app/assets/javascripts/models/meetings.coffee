@@ -1,6 +1,5 @@
 class window.Meeting extends Backbone.Model
-
-  initialize: (attributes = {}) ->
+  urlRoot: '/meetings'
 
   toggleCancel: (callbacks = {}) ->
     @save {cancelled: !@get('cancelled')}, success: callbacks.success, error: callbacks.error

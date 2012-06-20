@@ -31,6 +31,7 @@ class @Booking
           if options.navigate != false
             options.navigate ||= Booking.defaults.navigate
             @router.navigate(options.navigate.url, options.navigate.options)
+          $(document).trigger('booking:started')
 
 $.fn.pickDateTime = (options) -> @will_pickdate($.extend Booking.defaults.will_pickdate, options)
 

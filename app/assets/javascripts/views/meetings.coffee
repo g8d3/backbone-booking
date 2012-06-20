@@ -2,18 +2,18 @@ class window.MeetingIndex extends Backbone.View
 
   className: 'container-fluid'
 
-  initialize: (options = {}) ->
-    options[key] ||= val for key, val of fetch: true, render: true
-    @collection = options.collection || booking.meetings
-    @template = options.template || JST['meeting/index']
-    @row = options.row || JST['meeting/row']
-    if options.render then @render()
+  initialize:  ->
+    _.defaults @options, fetch: true, render: true
+    @collection = @options.collection || booking.meetings
+    @template = @options.template || JST['meeting/index']
+    @row = @options.row || JST['meeting/row']
     @collection.on 'sync', @addRow, this
     booking.landlords.on 'sync', @autocompleteAdd, this
     booking.tenants.on 'sync', @autocompleteAdd, this
+    if @options.render then @render()
 
   render: (options = {}) ->
-    options[key] ||= val for key, val of writeTo: 'body', enhanceUI: true
+    _.defaults options, writeTo: 'body', enhanceUI: true
     @$el.html(@template(collection: @collection, row: @row))
     $(options.writeTo).html(@el) if options.writeTo
     @enhanceUI() if options.enhanceUI
@@ -44,7 +44,7 @@ class window.MeetingIndex extends Backbone.View
     $('input[name=landlord_id]').focus()
 
   events:
-    'click form#new_meeting label[for!=at]': 'openAutocomplete'
+    'click form#new_meeting input[name!=at]': 'openAutocomplete'
     'keyup form#new_meeting input': 'checkValue'
     'click form#new_meeting .create-user': 'createUser'
     'click form#new_meeting label[for=at]': 'focusAtDisplay'
@@ -53,7 +53,7 @@ class window.MeetingIndex extends Backbone.View
     'click a.delete': 'delete'
     'click .dismiss.button': 'dismiss'
 
-  openAutocomplete: (event) -> $(event.target).nextAll('input:first').autocomplete('search')
+  openAutocomplete: (event) -> $(event.target).autocomplete('search')
 
   checkValue: (event) ->
     if ['displayed_landlord_id', 'displayed_tenant_id'].indexOf(event.target.id) != -1
@@ -71,7 +71,11 @@ class window.MeetingIndex extends Backbone.View
 
   create: (event) ->
     event.preventDefault()
-    @collection.create($('form#new_meeting').serializeObject(), wait: true)
+    response = @collection.create $('form#new_meeting').serializeObject(),
+      wait: true
+      error: (model, response) ->
+        errors = JSON.parse(response.responseText).errors
+        $('form').append($('<div class="alert alert-error"></div>').html(errors.landlord[0]).alert())
 
   cancel: (event) ->
     event.preventDefault()

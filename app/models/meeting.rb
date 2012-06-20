@@ -1,7 +1,13 @@
 class Meeting < ActiveRecord::Base
   attr_accessible :at, :landlord_id, :landlord, :tenant_id, :tenant, :cancelled
   validates_presence_of :at, :landlord, :tenant
-  #validate { errors.add :landlord, "Landlord is busy #{at.strftime('on %D at %R')}" if landlord.busy?(at)}
+  validate :busy_landlord, on: :create
+
+  validates_associated :landlord
   belongs_to :landlord
   belongs_to :tenant
+
+  def busy_landlord
+    errors.add :landlord, I18n.t(:landlord_is_busy, at: at.strftime(I18n.t(:datetime_format))) if landlord.busy?(at)
+  end
 end

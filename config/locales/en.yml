@@ -5,3 +5,4 @@ en:
   hello: "Hello world"
   loading: "Loading..."
   datetime_format: "%d %B %Y at %H:%M:%S"
+  landlord_is_busy: "Landlord is busy on %{at}"
