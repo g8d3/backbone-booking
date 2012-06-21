@@ -52,7 +52,7 @@ class window.MeetingIndex extends Backbone.View
     'click form#new_meeting .create-meeting': 'create'
     'click a.cancel': 'cancel'
     'click a.delete': 'delete'
-    'click .alert.removed': 'dismiss'
+    'click .alert': 'dismiss'
 
   openAutocomplete: (event) -> $(event.target).autocomplete('search')
 
@@ -81,8 +81,11 @@ class window.MeetingIndex extends Backbone.View
     response = @collection.create $('form#new_meeting').serializeObject(),
       wait: true
       error: (model, response) ->
-        errors = JSON.parse(response.responseText).errors
-        $('form').append($('<div class="alert alert-error"></div>').html(errors.landlord[0]).alert())
+        $('.form-error').remove()
+        errorsMap = JSON.parse(response.responseText).errors
+        for field, errors of errorsMap
+          for error in errors
+            $('form').append($('<div class="alert alert-error form-error"></div>').html(error))
 
   cancel: (event) ->
     event.preventDefault()

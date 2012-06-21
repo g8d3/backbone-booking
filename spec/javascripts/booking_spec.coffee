@@ -10,7 +10,7 @@ describe 'booking application', ->
   it 'triggers booking:started event on document when application has started successfully', ->
     runs -> expect(@callback).toHaveBeenCalled()
 
-  describe 'given some meeting', ->
+  describe 'given a meeting', ->
     beforeEach ->
       finished = null
       @landlord = Booking.Factories.landlord()

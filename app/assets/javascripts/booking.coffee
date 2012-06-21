@@ -15,7 +15,7 @@ class @Booking
         $(@).focus()
         $(@).val(ui.item.label)
 
-    will_pickdate: timePicker: true, format: 'j F Y H:i', inputOutputFormat: 'Y-m-dTH:i:s'
+    will_pickdate: timePicker: true, format: 'j F Y H:i', inputOutputFormat: 'Y-m-dTH:i'
 
     navigate: url: 'meetings', options: trigger: true
 

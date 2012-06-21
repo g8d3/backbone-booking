@@ -4,5 +4,8 @@
 en:
   hello: "Hello world"
   loading: "Loading..."
-  datetime_format: "%d %B %Y at %H:%M:%S"
+  datetime_format: "%A %d %B %Y at %H:%M"
   is_busy: "is busy on %{at}"
+  please_fill_meeting_time: "Please fill meeting time"
+  please_fill_landlord: "Please fill landlord"
+  please_fill_tenant: "Please fill tenant"
