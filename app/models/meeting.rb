@@ -3,7 +3,6 @@ class Meeting < ActiveRecord::Base
   validates_presence_of :at, :landlord, :tenant
   validate :busy_landlord, on: :create
 
-  validates_associated :landlord
   belongs_to :landlord
   belongs_to :tenant
 
