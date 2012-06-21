@@ -36,7 +36,7 @@ describe 'booking application', ->
     it 'shows meeting tenant name', ->
       expect($('.sandbox tbody tr').html()).toMatch(@tenant.get('name'))
 
-    it 'shows meeting formatted datetime as ', ->
+    it 'shows meeting time', ->
       expect($('.sandbox tbody tr').html()).toMatch(@meeting.get('at'))
 
     afterEach ->
