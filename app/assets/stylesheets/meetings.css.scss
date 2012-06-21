@@ -20,14 +20,8 @@ $baseColorDark: #387038;
   color: red;
 }
 
-.dismiss {
-  color: black;
-  border: 1px solid red;
-  padding: 10px 40px;
-  background: #ffaec4;
-  &:hover {
-    cursor: pointer;
-  }
+.alert.removed:hover{
+  cursor: pointer;
 }
 
 input:focus, textarea:focus {
@@ -72,4 +66,10 @@ h2 {
 
 .alert{
   margin: 1ex;
+}
+
+.wpd{
+  input{
+    height: 32px;
+  }
 }

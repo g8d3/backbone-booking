@@ -16,5 +16,6 @@
         %th Tenant
         %th At
         %th Actions
-      - for model in @collection.models
-        != @row model: model
+      %tbody
+        - for model in @collection.models
+          != @row model: model

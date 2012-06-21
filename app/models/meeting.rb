@@ -8,6 +8,6 @@ class Meeting < ActiveRecord::Base
   belongs_to :tenant
 
   def busy_landlord
-    errors.add :landlord, I18n.t(:landlord_is_busy, at: at.strftime(I18n.t(:datetime_format))) if landlord.busy?(at)
+    errors.add :landlord, landlord.name + ' ' + I18n.t(:is_busy, at: at.strftime(I18n.t(:datetime_format))) if landlord.busy?(at)
   end
 end

@@ -45,21 +45,28 @@ class window.MeetingIndex extends Backbone.View
 
   events:
     'click form#new_meeting input[name!=at]': 'openAutocomplete'
-    'keyup form#new_meeting input': 'checkValue'
+    'keyup form#new_meeting input': 'showCreate'
+    'keydown form#new_meeting input': 'createOnEnter'
     'click form#new_meeting .create-user': 'createUser'
     'click form#new_meeting label[for=at]': 'focusAtDisplay'
     'click form#new_meeting .create-meeting': 'create'
     'click a.cancel': 'cancel'
     'click a.delete': 'delete'
-    'click .dismiss.button': 'dismiss'
+    'click .alert.removed': 'dismiss'
 
   openAutocomplete: (event) -> $(event.target).autocomplete('search')
 
-  checkValue: (event) ->
+  showCreate: (event) ->
     if ['displayed_landlord_id', 'displayed_tenant_id'].indexOf(event.target.id) != -1
       collection = event.target.id.match(/tenant|landlord/)[0] + 's'
       $(event.target).nextAll('.btn').first().toggle(booking[collection].pluck('name').indexOf(event.target.value) == -1 &&
       event.target.value[0]?)
+
+  createOnEnter: (event) ->
+    if ['displayed_landlord_id', 'displayed_tenant_id'].indexOf(event.target.id) != -1
+      collection = event.target.id.match(/tenant|landlord/)[0] + 's'
+      if booking[collection].pluck('name').indexOf(event.target.value) == -1 && event.target.value[0]? && event.keyCode == 13
+        booking[collection].create name: event.target.value, wait: true
 
   createUser: (event) ->
     collection = $(event.target).prevAll('input').first().attr('id').match(/tenant|landlord/)[0] + 's'
@@ -92,8 +99,7 @@ class window.MeetingIndex extends Backbone.View
     @collection.get(id).destroy
       success: (model) ->
         $(event.target).closest('tr').fadeOut('slow',
-        -> $(@).html('<span class="dismiss button">Removed!</span>')).fadeIn('slow')
+        -> $(@).html('<td colspan="4" class="alert alert-warning removed">Meeting removed!</td>')).fadeIn('slow')
 
   dismiss: (event) ->
     $(event.target).fadeOut('slow')
-
