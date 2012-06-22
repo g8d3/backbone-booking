@@ -16,11 +16,11 @@ $baseColorDark: #387038;
   text-decoration: line-through;
 }
 
-.error-cancelling{
+.error-cancelling {
   color: red;
 }
 
-.alert.removed:hover{
+.alert.removed:hover {
   cursor: pointer;
 }
 
@@ -50,7 +50,7 @@ input:focus, textarea:focus {
 
 h1.brand {
   font-family: 'Concert One', cursive;
-  font-size: 36px;
+  font-size: 2.769230769em; /* 36px */
   color: $baseColorDark;
   margin: 0.5em 0;
 }
@@ -60,22 +60,87 @@ h2 {
   color: $baseColorLight;
 }
 
-.alert.centered{
+.alert.centered {
   padding: 4px 10px 7px;
 }
 
-.alert{
+.alert {
   margin: 1ex;
 }
 
-.wpd{
+.wpd {
   input{
     height: 32px;
   }
 }
 
-tbody{
+tbody {
   td:last-child{
     width: 20%;
+  }
+}
+
+/* Smartphones and tablets*/
+@media
+only screen and (max-width: 800px), (max-device-width: 800px) {
+.form-inline {
+    label, span, input[type="text"] {
+      display: block;
+    }
+    label:not(:first-child) {
+      margin-top: 5px;
+    }
+  }
+}
+
+/* Smartphones */
+@media
+only screen and (max-width: 760px), (max-device-width: 760px) {
+/* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+/* Hide table headers (but not display: none;, for accessibility) */
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  td {
+  /* Behave  like a "row" */
+    border: none;
+    position: relative;
+    padding-left: 40%;
+    &:last-child {
+      border-bottom: 1px solid #ddd;
+    }
+  }
+
+  td:before {
+  /* Now like a table header */
+    position: absolute;
+  /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+  }
+
+  /* Label the data */
+  td:nth-of-type(1):before { content: "Landlord:"; }
+  td:nth-of-type(2):before { content: "Tenant:"; }
+  td:nth-of-type(3):before { content: "At:"; }
+  tbody td:nth-of-type(4) {
+    width: auto;
+    a {
+      font-weight: bold;
+      &:last-child {
+        margin-left: 20px;
+      }
+    }
   }
 }
