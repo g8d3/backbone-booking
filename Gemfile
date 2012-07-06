@@ -25,3 +25,7 @@ gem 'backbone-on-rails'
 gem 'therubyracer'
 gem 'bootstrap-sass', '~> 2.0.3'
 gem 'hirb'
+
+group :production do
+ gem 'activerecord-postgresql-adapter'
+end
