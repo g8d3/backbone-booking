@@ -11,7 +11,6 @@ end
 
 group :development, :test do
   gem 'awesome_print'
-  gem 'hirb'
   gem 'wirb'
   gem 'wirble'
   gem 'rspec-rails'
@@ -25,3 +24,4 @@ gem 'execjs'
 gem 'backbone-on-rails'
 gem 'therubyracer'
 gem 'bootstrap-sass', '~> 2.0.3'
+gem 'hirb'
