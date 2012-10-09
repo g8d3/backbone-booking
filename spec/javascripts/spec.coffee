@@ -11,3 +11,6 @@
 #= require_tree ../../app/assets/javascripts/models
 #= require_tree ../../app/assets/javascripts/views
 #= require_tree ../../app/assets/javascripts/routers
+
+$ ->
+  $('.ui-page.ui-body-c.ui-page-active').attr('style','')
