@@ -29,4 +29,4 @@ gem 'execjs'
 gem 'backbone-on-rails'
 gem 'therubyracer'
 gem 'bootstrap-sass', '~> 2.0.3'
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', "~> 3.5.5.38"
